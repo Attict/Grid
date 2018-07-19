@@ -60,6 +60,7 @@ local spell_names = {
 	["Power Word: Shield"] = GetSpellInfo(17),
 	["Prayer of Mending"] = GetSpellInfo(33076),
 	["Renew"] = GetSpellInfo(139),
+        ["Power Word: Fortitude"] = GetSpellInfo(21562),
 -- Shaman
 	["Riptide"] = GetSpellInfo(61295),
 }
@@ -426,6 +427,13 @@ GridStatusAuras.defaultDB = {
 		durationColorMiddle = { r = 0, g = 0.49, b = 0.21, a = 1 },
 		durationColorHigh = { r = 0, g = 0.7, b = 0.3, a = 1 },
 		mine = true,
+	},
+	[GridStatusAuras:StatusForSpell("Power Word: Fortitude", true)] = {
+		-- 21562
+		desc = format(L["Buff: %s"], spell_names["Power Word: Fortitude"]),
+		buff = spell_names["Power Word: Fortitude"],
+		text = GridStatusAuras:TextForSpell(spell_names["Power Word: Fortitude"]),
+		color = { r = 0, g = 0.7, b = 0.3, a = 1 },
 	},
 
 	---------------------
