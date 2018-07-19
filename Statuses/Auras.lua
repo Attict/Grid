@@ -417,7 +417,7 @@ GridStatusAuras.defaultDB = {
 		color = { r = 0.2, g = 0.8, b = 1, a = 1 },
 		mine = true,
 	},
-	[GridStatusAuras:StatusForSpell("Renew", true)] = {
+	[GridStatusAuras:StatusForSpell("Renew12", true)] = {
 		-- 139
 		desc = format(L["Buff: %s"], spell_names["Renew"]),
 		buff = spell_names["Renew"],
