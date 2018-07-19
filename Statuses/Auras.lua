@@ -58,12 +58,10 @@ local spell_names = {
 	["Guardian Spirit"] = GetSpellInfo(47788),
 	["Light of T'uure"] = GetSpellInfo(208065),
 	["Power Word: Shield"] = GetSpellInfo(17),
-        ["Power Word: Fortitude"] = GetSpellInfo(21562),
 	["Prayer of Mending"] = GetSpellInfo(33076),
 	["Renew"] = GetSpellInfo(139),
 -- Shaman
 	["Riptide"] = GetSpellInfo(61295),
-        ["Earth Shield"] = GetSpellInfo(254417),
 }
 
 -- data used by aura scanning
@@ -232,7 +230,6 @@ GridStatusAuras.defaultDB = {
 		text = GridStatusAuras:TextForSpell(spell_names["Rejuvenation"]),
 		color = { r = 0, g = 0.3, b = 0.7, a = 1 },
 		durationColorLow = { r = 1, g = 0, b = 0, a = 1 },
->>>>>>> bfa
 		durationColorMiddle = { r = 0, g = 0.21, b = 0.49, a = 1 },
 		durationColorHigh = { r = 0, g = 0.3, b = 0.7, a = 1 },
 		mine = true,
@@ -411,13 +408,6 @@ GridStatusAuras.defaultDB = {
 		durationColorMiddle = { r = 0.56, g = 0.56, b = 0, a = 1 },
 		durationColorHigh = { r = 0.8, g = 0.8, b = 0, a = 1 },
 	},
-        [GridStatusAuras:StatusForSpell("Power Word: Fortitude", true)] = {
-                -- 21562
-                desc = format(L["Buff: %s"], spell_names["Power Word: Fortitude"]),
-                buff = spell_names["Power Word: Fortitude"],
-                text = GridStatusAuras:TextForSpell(spell_names["Power Word: Fortitude"]),
-		color = { r = 0.4, g = 0, b = 0.8, a = 1 },
-        },
 	[GridStatusAuras:StatusForSpell("Prayer of Mending", true)] = {
 		-- 33076, 41635
 		buff = spell_names["Prayer of Mending"],
@@ -452,14 +442,6 @@ GridStatusAuras.defaultDB = {
 		durationColorHigh = { r = 0.4, g = 0, b = 0.8, a = 1 },
 		mine = true,
 	},
-	[GridStatusAuras:StatusForSpell("Earth Shield", true)] = {
-		-- 254417
-		desc = format(L["Buff: %s"], spell_names["Earth Shield"]),
-		buff = spell_names["Earth Shield"],
-		text = GridStatusAuras:TextForSpell(spell_names["Earth Shield"]),
-		color = { r = 0.2, g = 1, b = 0.2, a = 1 },
-	},
-
 }
 
 local default_auras = {}
