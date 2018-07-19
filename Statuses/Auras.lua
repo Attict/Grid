@@ -58,6 +58,7 @@ local spell_names = {
 	["Power Word: Shield"] = GetSpellInfo(17),
 	["Prayer of Mending"] = GetSpellInfo(33076),
 	["Renew"] = GetSpellInfo(139),
+        ["Power Word: Fortitude"] = GetSpellInfo(21562),
 -- Shaman
 	["Riptide"] = GetSpellInfo(61295),
 }
@@ -425,6 +426,16 @@ GridStatusAuras.defaultDB = {
 		durationColorHigh = { r = 0, g = 0.7, b = 0.3, a = 1 },
 		mine = true,
 	},
+        [GridStatusAuras:StatusForSpell("Power Word: Fortitude", true)] = {
+                -- 21562
+                desc = format(L["Buff: %s"], spell_names["Power Word: Fortitude"]),
+                buff = spell_names["Power Word: Fortitude"],
+                text = GridStatusAuras:TextForSpell(spell_names["Power Word: Fortitude"]),
+		color = { r = 0.8, g = 0.8, b = 0, a = 1 },
+		durationColorLow = { r = 1, g = 0, b = 0, a = 1 },
+		durationColorMiddle = { r = 0.56, g = 0.56, b = 0, a = 1 },
+		durationColorHigh = { r = 0.8, g = 0.8, b = 0, a = 1 },
+        },
 
 	---------------------
 	-- Shaman
@@ -1318,7 +1329,7 @@ function GridStatusAuras:RefreshActiveDurations()
 		if settings and settings.enable and not settings.missing then -- and settings[class] ~= false then -- ##DELETE
 			for guid, aura in pairs(guids) do
 				local count, duration, expirationTime, icon = aura.count, aura.duration, aura.expirationTime, aura.icon
-				local start = expirationTime and (expirationTime - duration) -- Attict: ExpirationTime is causing an error because it's a string
+				local start = expirationTime and (expirationTime - duration) 
 				local timeLeft = expirationTime and expirationTime > now and (expirationTime - now) or 0
 				local text, color = self:StatusTextColor(settings, count, timeLeft)
 				self.core:SendStatusGained(guid,
@@ -1678,11 +1689,17 @@ function GridStatusAuras:ScanUnitAuras(event, unit, guid)
 
 		-- scan for debuffs
 		for index = 1, 40 do
+
+                    --name, icon, count, debuffType, duration, expirationTime, unitCaster, canStealOrPurge, nameplateShowPersonal, spellId, canApplyAura, isBossDebuff, isCastByPlayer, nameplateShowAll, timeMod, ... = AuraUtil.FindAuraByName(auraName, unit, filter)
+
 			local name, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer = AuraUtil.FindAuraByName(buff_name, unit, nil, "HARMFUL")
 			if not name then
+                                -- ATTICT: This could be the possible cause for the error not showing debuffs #888
+                                -- ...perhaps breaking with no name, try printing out here, perhaps print out `name`
 				break
 			end
 			if debuff_names[name] then
+                                -- ATTICT: Also try printing out here
 				debuff_names_seen[name] = true
 				self:UnitGainedDebuff(guid, class, name, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer)
 			--[[
@@ -1692,6 +1709,7 @@ function GridStatusAuras:ScanUnitAuras(event, unit, guid)
 			]]
 			elseif debuff_types[debuffType] then
 				-- elseif so that a named debuff doesn't trigger the type status
+                                -- ATTICT: Also try printing out here
 				debuff_types_seen[debuffType] = true
 				self:UnitGainedDebuffType(guid, class, name, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer)
 			end
@@ -1717,6 +1735,7 @@ function GridStatusAuras:ScanUnitAuras(event, unit, guid)
 
 	-- handle lost debuffs
 	for name in pairs(debuff_names) do
+                -- ATTICT: Another spot to try printing
 		if not debuff_names_seen[name] then
 			self:UnitLostDebuff(guid, class, name)
 		else
@@ -1725,6 +1744,7 @@ function GridStatusAuras:ScanUnitAuras(event, unit, guid)
 	end
 
 	for debuffType in pairs(debuff_types) do
+                -- ATTICT: Try printing here as well
 		if not debuff_types_seen[debuffType] then
 			self:UnitLostDebuffType(guid, class, debuffType)
 		else
