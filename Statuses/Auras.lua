@@ -1659,7 +1659,8 @@ function GridStatusAuras:ScanUnitAuras(event, unit, guid)
 	if UnitIsVisible(unit) then
 		-- scan for buffs
 		for buff_name in pairs(buff_names) do
-			local name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(unit, buff_name, nil, "HELPFUL")
+			-- ATTICT: local name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(unit, buff_name, nil, "HELPFUL")
+			local name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = AuraUtil.FindAuraByName(buff_name, unit, nil, "HELPFUL")
 			if name then
 				buff_names_seen[name] = true
 				self:UnitGainedBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
@@ -1668,7 +1669,8 @@ function GridStatusAuras:ScanUnitAuras(event, unit, guid)
 
 		-- scan for buffs cast by the player
 		for buff_name in pairs(player_buff_names) do
-			local name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(unit, buff_name, nil, "HELPFUL|PLAYER")
+			-- ATTICT: local name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(unit, buff_name, nil, "HELPFUL|PLAYER")
+			local name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = AuraUtil.FindAuraByName(buff_name, unit, nil, "HELPFUL|PLAYER")
 			if name then
 				player_buff_names_seen[name] = true
 				self:UnitGainedPlayerBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
@@ -1677,7 +1679,8 @@ function GridStatusAuras:ScanUnitAuras(event, unit, guid)
 
 		-- scan for debuffs
 		for index = 1, 40 do
-			local name, rank, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer = UnitAura(unit, index, "HARMFUL")
+			-- ATTICT: local name, rank, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer = UnitAura(unit, index, "HARMFUL")
+			local name, rank, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer = AuraUtil.FindAuraByName(buff_name, unit, nil, "HARMFUL")
 			if not name then
 				break
 			end
