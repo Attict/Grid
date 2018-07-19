@@ -1319,7 +1319,7 @@ function GridStatusAuras:RefreshActiveDurations()
 		if settings and settings.enable and not settings.missing then -- and settings[class] ~= false then -- ##DELETE
 			for guid, aura in pairs(guids) do
 				local count, duration, expirationTime, icon = aura.count, aura.duration, aura.expirationTime, aura.icon
-				local start = expirationTime and (expirationTime - duration)
+				local start = expirationTime and (expirationTime - duration) -- Attict: ExpirationTime is causing an error because it's a string
 				local timeLeft = expirationTime and expirationTime > now and (expirationTime - now) or 0
 				local text, color = self:StatusTextColor(settings, count, timeLeft)
 				self.core:SendStatusGained(guid,

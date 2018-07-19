@@ -1,4 +1,4 @@
-## Interface: 70300
+## Interface: 80000
 ## Version: @project-version@
 
 ## Title: Grid
@@ -12,7 +12,7 @@
 ## Notes-zhCN: 紧凑方格队伍/团队框架。
 ## Notes-zhTW: 緊湊方格隊伍/團隊框架。
 
-## Author: Phanx, Pastamancer, Maia
+## Author: Attict, Phanx, Pastamancer, Maia
 ## X-Credits: Greltok, Jerry, jlam
 ## X-License: All Rights Reserved
 ## X-Website: https://wow.curseforge.com/projects/grid/
