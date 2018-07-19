@@ -58,6 +58,7 @@ local spell_names = {
 	["Guardian Spirit"] = GetSpellInfo(47788),
 	["Light of T'uure"] = GetSpellInfo(208065),
 	["Power Word: Shield"] = GetSpellInfo(17),
+        ["Power Word: Fortitude"] = GetSpellInfo(21562),
 	["Prayer of Mending"] = GetSpellInfo(33076),
 	["Renew"] = GetSpellInfo(139),
 -- Shaman
