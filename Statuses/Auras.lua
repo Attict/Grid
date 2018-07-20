@@ -449,7 +449,7 @@ GridStatusAuras.defaultDB = {
 		durationColorLow = { r = 1, g = 0, b = 0, a = 1 },
 		durationColorMiddle = { r = 0.28, g = 0, b = 0.56, a = 1 },
 		durationColorHigh = { r = 0.4, g = 0, b = 0.8, a = 1 },
-		mine = true,
+		-- ATTICT:  mine = true,
 	},
 	[GridStatusAuras:StatusForSpell("Earth Shield", true)] = {
 		-- 204288
