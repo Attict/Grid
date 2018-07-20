@@ -1688,18 +1688,15 @@ function GridStatusAuras:RefreshActiveDurations()
 					else
 						name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(unit, i, "HELPFUL")
 					end
+
+					print(caster)
 					
 					if not name then
-						print("Not name")
-						print(name);
 						break
 					end
 					
 					-- scan for buffs
 					if buff_names[name] then
-						print("Scan for buffs:")
-						print(buff_names[name])
-						print(buff_names_seen[name])
 						buff_names_seen[name] = true
 						self:UnitGainedBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
 					end
