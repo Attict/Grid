@@ -1628,7 +1628,6 @@ function GridStatusAuras:RefreshActiveDurations()
 					if isBuff then
 						if settings.mine then
 							self:Debug("Added to player_buff_names")
-							print(status)
 							player_buff_names[name] = status
 						else
 							self:Debug("Added to buff_names")
@@ -1688,8 +1687,6 @@ function GridStatusAuras:RefreshActiveDurations()
 					else
 						name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(unit, i, "HELPFUL")
 					end
-
-					print(caster)
 					
 					if not name then
 						break
@@ -1700,14 +1697,23 @@ function GridStatusAuras:RefreshActiveDurations()
 						buff_names_seen[name] = true
 						self:UnitGainedBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
 					end
-					
-					-- scan for buffs cast by the player
+				end
+
+				-- FIXME: Attict - temporary test solution
+				for i = 1, 40 do
+					local rank
+					local name, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(unit, i, "HELPFUL|PLAYER")
+
+					if not name then
+						break
+					end
+
 					if player_buff_names[name] then
 						player_buff_names_seen[name] = true
 						self:UnitGainedPlayerBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
 					end
 				end
-				
+
 				-- scan for debuffs
 				for index = 1, 40 do
 					local name, rank, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer
