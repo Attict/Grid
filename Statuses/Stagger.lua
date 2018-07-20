@@ -177,7 +177,6 @@ function GridStatusStagger:UpdateUnit(event, unitid)
 
 			local severity = spellID_severity[spellID]
 			if severity then
->>>>>>> bfa
 				local settings = self.db.profile.alert_stagger
 				local color = severity and settings.colors[severity]
 				return self.core:SendStatusGained(guid,
