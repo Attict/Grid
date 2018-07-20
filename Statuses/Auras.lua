@@ -1689,11 +1689,15 @@ function GridStatusAuras:ScanUnitAuras(event, unit, guid)
 			end
 
 			if not name then
+                                print("not name")
 				break
 			end
 
 			-- scan for buffs
 			if buff_names[name] then
+                                print("Scan for buffs:")
+                                print(buff_names[name])
+                                print(buff_names_seen[name])
 				buff_names_seen[name] = true
 				self:UnitGainedBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
 			end
