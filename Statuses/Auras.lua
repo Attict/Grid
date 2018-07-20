@@ -268,7 +268,7 @@ GridStatusAuras.defaultDB = {
 		desc = format(L["Buff: %s"], spell_names["Enveloping Mist"]),
 		text = GridStatusAuras:TextForSpell(spell_names["Enveloping Mist"]),
 		color = { r = 0.2, g = 1, b = 0.2, a = 1 },
-		mine = true,
+	 ATTICT: 	mine = true,
 	},
 	[GridStatusAuras:StatusForSpell("Life Cocoon", true)] = {
 		-- 116849
@@ -449,7 +449,7 @@ GridStatusAuras.defaultDB = {
 		durationColorLow = { r = 1, g = 0, b = 0, a = 1 },
 		durationColorMiddle = { r = 0.28, g = 0, b = 0.56, a = 1 },
 		durationColorHigh = { r = 0.4, g = 0, b = 0.8, a = 1 },
-		-- ATTICT:  mine = true,
+		mine = true,
 	},
 	[GridStatusAuras:StatusForSpell("Earth Shield", true)] = {
 		-- 204288
@@ -1628,6 +1628,7 @@ function GridStatusAuras:UpdateAuraScanList()
 				if isBuff then
 					if settings.mine then
 						self:Debug("Added to player_buff_names")
+                                                print(status)
 						player_buff_names[name] = status
 					else
 						self:Debug("Added to buff_names")
@@ -1689,7 +1690,8 @@ function GridStatusAuras:ScanUnitAuras(event, unit, guid)
 			end
 
 			if not name then
-                                print("not name")
+                                print("Not name")
+                                print(name);
 				break
 			end
 
